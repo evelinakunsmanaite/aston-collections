@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.AbstractList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.RandomAccess;
+import java.util.*;
 
 public class MyArrayList<E> extends AbstractList<E> implements RandomAccess, java.io.Serializable {
     private static final int DEFAULT_CAPACITY = 10;
@@ -39,6 +36,20 @@ public class MyArrayList<E> extends AbstractList<E> implements RandomAccess, jav
     public int size() {
         return size;
     }
+
+    public E get(int index) {
+        Objects.checkIndex(index, size);
+        return (E) elements[index];
+    }
+
+    public E[] setByIndex(int index, E element){
+        Objects.checkIndex(index, size);
+        elements[index] = element;
+        return (E[]) elements;
+    }
+
+
+
 
 
 
