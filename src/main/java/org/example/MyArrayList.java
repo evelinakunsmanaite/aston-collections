@@ -42,10 +42,10 @@ public class MyArrayList<E> extends AbstractList<E> implements RandomAccess, jav
         return (E) elements[index];
     }
 
-    public E[] setByIndex(int index, E element){
+    public boolean setByIndex(int index, E element) {
         Objects.checkIndex(index, size);
         elements[index] = element;
-        return (E[]) elements;
+        return true;
     }
 
     private void add(E element, Object[] object, int sizeObject) {
@@ -136,11 +136,11 @@ public class MyArrayList<E> extends AbstractList<E> implements RandomAccess, jav
         return true;
     }
 
-    public E[] delete(int index) {
+    public boolean delete(int index) {
         checkerRange(index);
         final Object[] objects = elements;
         delete(objects, index);
-        return (E[]) elements;
+        return true;
     }
 
     private void delete(Object[] objects, int indexObject) {
@@ -148,7 +148,6 @@ public class MyArrayList<E> extends AbstractList<E> implements RandomAccess, jav
         if (newSize > indexObject)
             System.arraycopy(objects, indexObject + 1, objects, indexObject, newSize - indexObject);
         objects[newSize] = null;
-
     }
 
     public boolean delete(Object object) {
@@ -161,7 +160,7 @@ public class MyArrayList<E> extends AbstractList<E> implements RandomAccess, jav
         return true;
     }
 
-    public static <E extends Comparable<? super E>> E[] bubbleSort(Collection<? extends E> collection) {
+    public static <E extends Comparable<? super E>> String bubbleSort(Collection<? extends E> collection) {
         E[] objects = (E[]) new Comparable[collection.size()];
         objects = collection.toArray(objects);
         if (!isSort(objects)) {
@@ -177,7 +176,7 @@ public class MyArrayList<E> extends AbstractList<E> implements RandomAccess, jav
                 }
             }
         }
-        return objects;
+        return Arrays.toString(objects);
     }
 
     private static <E extends Comparable<? super E>> boolean isSort(E[] array) {
@@ -187,6 +186,5 @@ public class MyArrayList<E> extends AbstractList<E> implements RandomAccess, jav
         }
         return true;
     }
-
 
 }
